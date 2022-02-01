@@ -96,6 +96,33 @@ class Produto {
         document.getElementById('preco').value = '';
     }
 
+    organizar(parametro){
+
+        if(parametro){
+            for(let i=0; i<this.arrayProdutos.length; i++){
+                for(let j = 0; j<this.arrayProdutos.length;j++){
+                    if(this.arrayProdutos[i].precoProduto>this.arrayProdutos[j].precoProduto){
+                        let temp = Object.assign({},this.arrayProdutos[i]);
+                        this.arrayProdutos[i] = Object.assign({}, this.arrayProdutos[j]);
+                        this.arrayProdutos[j] = Object.assign({},temp);
+                    }
+                }
+            }
+        }
+        else{
+            for(let i=0; i<this.arrayProdutos.length; i++){
+                for(let j = 0; j<this.arrayProdutos.length;j++){
+                    if(this.arrayProdutos[i].precoProduto<this.arrayProdutos[j].precoProduto){
+                        let temp = Object.assign({},this.arrayProdutos[i]);
+                        this.arrayProdutos[i] = Object.assign({}, this.arrayProdutos[j]);
+                        this.arrayProdutos[j] = Object.assign({},temp);
+                    }
+                }
+            }
+        }
+        this.listaTabela();
+    }
+
 }
 
 var produto = new Produto();
