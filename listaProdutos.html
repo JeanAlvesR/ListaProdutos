@@ -9,8 +9,53 @@
     <script src="js/script1.js"></script>
 </head>
 <body>
-    <h1>
-        Lista de Produtos
-    </h1>
+
+    <header>
+        <h1>Loja de Produtos</h1>
+    </header>
+
+    <main>
+        
+
+        <div class="card">
+
+            <div class="lineInput">
+                <label>Produto</label>
+                <input type="text" id = "produto" placeholder="Nome do produto"> 
+            </div>
+
+            <div class="lineInput">
+                <label>Preço</label>
+                <input type="text" id="preco" placeholder="Preço do produto"> 
+            </div>
+
+        
+            <button onclick="produto.salvar()">  Salvar</button>
+            <button onclick="produto.cancelar()"> Limpar</button>
+            <button onclick=""> Filtro</button>
+            <button onclick=""> Ordenar Preço</button>
+
+        </div>
+
+        <div class="content">
+            <table border=1>
+                <thead>
+                    <th>Código</th>
+                    <th>Nome</th>
+                    <th>Preço</th>
+                </thead>
+                <tbody id="tbody">
+                    
+                </tbody>
+            </table>
+        </div>
+
+        
+
+    </main>
+    
+   
+        
+
 </body>
 </html>
