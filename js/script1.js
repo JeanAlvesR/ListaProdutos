@@ -4,7 +4,7 @@ class Produto {
 
         this.codigoProduto = 1;
         this.arrayProdutos = [];
-        this.arrayProdutosAuxiliar = [];
+        this.arrayProdutosVisualizacao = [];
 
     }
 
@@ -42,7 +42,7 @@ class Produto {
 
     adicionar(produto) {
         this.arrayProdutos.push(produto);
-        this.arrayProdutosAuxiliar.push(produto);
+        this.arrayProdutosVisualizacao.push(produto);
         this.codigoProduto++;
     }
 
@@ -83,15 +83,14 @@ class Produto {
             let tbody = document.getElementById('tbody');
             tbody.innerText = '';
             let verifica = true;
-            this.arrayProdutosAuxiliar = [];
+            this.arrayProdutosVisualizacao = [];
             for (let i = 0; i < this.arrayProdutos.length; i++) {
-                if (this.arrayProdutos[i].nomeProduto == nome) {
-                    this.arrayProdutosAuxiliar.push(this.arrayProdutos[i]);
-
+                if (this.arrayProdutos[i].nomeProduto.toLowerCase().search(nome.toLowerCase()) != -1) {
+                    this.arrayProdutosVisualizacao.push(this.arrayProdutos[i]);
                     verifica = false;
                 }
             }
-            this.listaTabela(this.arrayProdutosAuxiliar);
+            this.listaTabela(this.arrayProdutosVisualizacao);
             if (verifica) {
                 alert('Não existe esse nome na lista!');
             }
@@ -112,24 +111,24 @@ class Produto {
         //decrescente
         if (parametro === 1) {
             
-            for (let i = 0; i < this.arrayProdutosAuxiliar.length; i++) {
-                for (let j = 0; j < this.arrayProdutosAuxiliar.length; j++) {
-                    if (this.arrayProdutosAuxiliar[i].precoProduto > this.arrayProdutosAuxiliar[j].precoProduto) {
-                        let temp = Object.assign({}, this.arrayProdutosAuxiliar[i]);
-                        this.arrayProdutosAuxiliar[i] = Object.assign({}, this.arrayProdutosAuxiliar[j]);
-                        this.arrayProdutosAuxiliar[j] = Object.assign({}, temp);
+            for (let i = 0; i < this.arrayProdutosVisualizacao.length; i++) {
+                for (let j = 0; j < this.arrayProdutosVisualizacao.length; j++) {
+                    if (this.arrayProdutosVisualizacao[i].precoProduto > this.arrayProdutosVisualizacao[j].precoProduto) {
+                        let temp = Object.assign({}, this.arrayProdutosVisualizacao[i]);
+                        this.arrayProdutosVisualizacao[i] = Object.assign({}, this.arrayProdutosVisualizacao[j]);
+                        this.arrayProdutosVisualizacao[j] = Object.assign({}, temp);
                     }
                 }
             }
         }
         //crescente
         else if(parametro === 0) {
-            for (let i = 0; i < this.arrayProdutosAuxiliar.length; i++) {
-                for (let j = 0; j < this.arrayProdutosAuxiliar.length; j++) {
-                    if (this.arrayProdutosAuxiliar[i].precoProduto < this.arrayProdutosAuxiliar[j].precoProduto) {
-                        let temp = Object.assign({}, this.arrayProdutosAuxiliar[i]);
-                        this.arrayProdutosAuxiliar[i] = Object.assign({}, this.arrayProdutosAuxiliar[j]);
-                        this.arrayProdutosAuxiliar[j] = Object.assign({}, temp);
+            for (let i = 0; i < this.arrayProdutosVisualizacao.length; i++) {
+                for (let j = 0; j < this.arrayProdutosVisualizacao.length; j++) {
+                    if (this.arrayProdutosVisualizacao[i].precoProduto < this.arrayProdutosVisualizacao[j].precoProduto) {
+                        let temp = Object.assign({}, this.arrayProdutosVisualizacao[i]);
+                        this.arrayProdutosVisualizacao[i] = Object.assign({}, this.arrayProdutosVisualizacao[j]);
+                        this.arrayProdutosVisualizacao[j] = Object.assign({}, temp);
                     }
                 }
             }
@@ -137,14 +136,11 @@ class Produto {
         else{
             this.copiaArray();
         }
-        this.listaTabela(this.arrayProdutosAuxiliar);
+        this.listaTabela(this.arrayProdutosVisualizacao);
     }
 
     copiaArray(){
-        this.arrayProdutosAuxiliar = [];
-        for(let i = 0; i<this.arrayProdutos.length; i++){
-            this.arrayProdutosAuxiliar.push(this.arrayProdutos[i]);
-        }
+        this.arrayProdutosVisualizacao = [...this.arrayProdutos];
     }
 
     
