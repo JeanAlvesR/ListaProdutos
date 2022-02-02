@@ -47,7 +47,7 @@ class Produto {
         let produto = {}
         produto.codigoProduto = this.codigoProduto;
         produto.nomeProduto = document.getElementById('produto').value;
-        produto.precoProduto = document.getElementById('preco').value;
+        produto.precoProduto = parseFloat(document.getElementById('preco').value);
 
         return produto;
     }
