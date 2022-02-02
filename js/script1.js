@@ -84,9 +84,9 @@ class Produto {
             tbody.innerText = '';
             let verifica = true;
             this.arrayProdutosVisualizacao = [];
-            for (let i = 0; i < this.arrayProdutos.length; i++) {
-                if (this.arrayProdutos[i].nomeProduto.toLowerCase().search(nome.toLowerCase()) != -1) {
-                    this.arrayProdutosVisualizacao.push(this.arrayProdutos[i]);
+            for (const produto of this.arrayProdutos) {
+                if (produto.nomeProduto.toLowerCase().search(nome.toLowerCase()) != -1) {
+                    this.arrayProdutosVisualizacao.push(produto);
                     verifica = false;
                 }
             }
