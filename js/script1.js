@@ -47,7 +47,9 @@ class Produto {
         let produto = {}
         produto.codigoProduto = this.codigoProduto;
         produto.nomeProduto = document.getElementById('produto').value;
-        produto.precoProduto = parseFloat(document.getElementById('preco').value);
+        //quando há a conversão, caso a pessoa insira o número com ',', a informação após a virgula era ignorada. O replace corrige isso.
+        produto.precoProduto = parseFloat((document.getElementById('preco').value).replace(',','.'));
+        
 
         return produto;
     }
@@ -58,7 +60,7 @@ class Produto {
         if (produto.nomeProduto == '') {
             msg += '- Informe o nome do Produto \n';
         }
-        if (produto.precoProduto == '') {
+        if (isNaN(produto.precoProduto)) {
             msg += '- Informe o Preço do Produto \n';
         }
         if (msg != '') {
