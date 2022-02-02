@@ -48,8 +48,8 @@ class Produto {
         produto.codigoProduto = this.codigoProduto;
         produto.nomeProduto = document.getElementById('produto').value;
         //quando há a conversão, caso a pessoa insira o número com ',', a informação após a virgula era ignorada. O replace corrige isso.
-        produto.precoProduto = parseFloat((document.getElementById('preco').value).replace(',','.'));
-        
+        produto.precoProduto = parseFloat((document.getElementById('preco').value).replace(',', '.'));
+
 
         return produto;
     }
@@ -77,10 +77,20 @@ class Produto {
             alert('Inserir nome para verificar!!!')
         }
         else {
+            let tbody = document.getElementById('tbody');
+            tbody.innerText = '';
             let verifica = true;
             for (let i = 0; i < this.arrayProdutos.length; i++) {
                 if (this.arrayProdutos[i].nomeProduto == nome) {
-                    alert('Código: ' + this.arrayProdutos[i].codigoProduto + '\nNome: ' + this.arrayProdutos[i].nomeProduto + '\nPreço: ' + this.arrayProdutos[i].precoProduto);
+                    let tr = tbody.insertRow();
+                    let td_codigo = tr.insertCell();
+                    let td_nome = tr.insertCell();
+                    let td_preco = tr.insertCell();
+
+                    td_codigo.innerText = this.arrayProdutos[i].codigoProduto;
+                    td_nome.innerText = this.arrayProdutos[i].nomeProduto;
+                    td_preco.innerText = this.arrayProdutos[i].precoProduto;
+
                     verifica = false;
                 }
             }
@@ -98,26 +108,26 @@ class Produto {
         document.getElementById('preco').value = '';
     }
 
-    organizar(parametro){
+    organizar(parametro) {
 
-        if(parametro){
-            for(let i=0; i<this.arrayProdutos.length; i++){
-                for(let j = 0; j<this.arrayProdutos.length;j++){
-                    if(this.arrayProdutos[i].precoProduto>this.arrayProdutos[j].precoProduto){
-                        let temp = Object.assign({},this.arrayProdutos[i]);
+        if (parametro) {
+            for (let i = 0; i < this.arrayProdutos.length; i++) {
+                for (let j = 0; j < this.arrayProdutos.length; j++) {
+                    if (this.arrayProdutos[i].precoProduto > this.arrayProdutos[j].precoProduto) {
+                        let temp = Object.assign({}, this.arrayProdutos[i]);
                         this.arrayProdutos[i] = Object.assign({}, this.arrayProdutos[j]);
-                        this.arrayProdutos[j] = Object.assign({},temp);
+                        this.arrayProdutos[j] = Object.assign({}, temp);
                     }
                 }
             }
         }
-        else{
-            for(let i=0; i<this.arrayProdutos.length; i++){
-                for(let j = 0; j<this.arrayProdutos.length;j++){
-                    if(this.arrayProdutos[i].precoProduto<this.arrayProdutos[j].precoProduto){
-                        let temp = Object.assign({},this.arrayProdutos[i]);
+        else {
+            for (let i = 0; i < this.arrayProdutos.length; i++) {
+                for (let j = 0; j < this.arrayProdutos.length; j++) {
+                    if (this.arrayProdutos[i].precoProduto < this.arrayProdutos[j].precoProduto) {
+                        let temp = Object.assign({}, this.arrayProdutos[i]);
                         this.arrayProdutos[i] = Object.assign({}, this.arrayProdutos[j]);
-                        this.arrayProdutos[j] = Object.assign({},temp);
+                        this.arrayProdutos[j] = Object.assign({}, temp);
                     }
                 }
             }
